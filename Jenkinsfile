@@ -47,11 +47,17 @@ pipeline {
         }
 
         stage('Build') {
-            when {branch pattern: "(dev|prod)", comparator: "REGEXP"}
+            when {branch pattern: "(dev|prod|PR-.*)", comparator: "REGEXP"}
             steps {
-                powershell "echo 'Building application...'"
-                powershell "ng build --prod"
-                powershell "ls"
+                script{
+
+                    powershell "echo 'Building application...'"
+
+                    if (env.BRANCH_NAME == 'dev' || env.BRANCH_NAME == 'prod')
+                    powershell "ng build --prod"
+                    powershell "ls"
+                }
+                
             }
         }
 
