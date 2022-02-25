@@ -30,12 +30,12 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
-            when {branch pattern: "(dev|prod)", comparator: "REGEXP"}
-            steps {
-                bat "echo 'Deploy"
-            }
-        }
+        // stage('Deploy') {
+        //     when {branch pattern: "(dev|prod)", comparator: "REGEXP"}
+        //     steps {
+        //         bat "echo 'Deploy"
+        //     }
+        // }
   }
 
 }
