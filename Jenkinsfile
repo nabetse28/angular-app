@@ -4,12 +4,12 @@ pipeline {
         label 'windows-worker'
     }
     environment {
-     BRANCH_NAME = "${GIT_BRANCH.split("/")[1]}"
+        BRANCH_NAME = "${GIT_BRANCH.split("/")[1]}"
     }
     stages {
 
         stage('Check Version') {
-            
+            when {branch 'dev'}
             steps {
                 bat "npm --version"
                 echo env.BRANCH_NAME
