@@ -8,7 +8,7 @@ pipeline {
         stage('Delete Folders & Check Version') {
             when {branch pattern: "(dev|prod)", comparator: "REGEXP"}
             steps {
-                bat "dir C:\inetpub\wwwroot\esteban\dev"
+                bat "cd C:/inetpub/wwwroot/esteban/dev"
                 bat "npm --version & ng --version"
             }
         }
