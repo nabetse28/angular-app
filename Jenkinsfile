@@ -8,7 +8,6 @@ pipeline {
         stage('Delete Folders & Check Version') {
             when {branch pattern: "(dev|prod)", comparator: "REGEXP"}
             steps {
-                sh "ls"
                 // bat "rmdir C:/inetpub/wwwroot/esteban/dev/ /Q/S"
                 bat "echo C:/inetpub/wwwroot/esteban/dev/"
                 bat "cd C:/inetpub/wwwroot/esteban/dev/ & dir"
