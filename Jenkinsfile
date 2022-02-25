@@ -9,14 +9,25 @@ pipeline {
     stages {
 
         stage('Delete Folders & Check Version') {
-            when {branch pattern: "(dev|prod)", comparator: "REGEXP"}
-            steps {                
-                powershell "echo 'Deleting folders & Checking [npm,ng] version...'"
-                powershell "ls C:/inetpub/wwwroot/esteban/dev/; cd C:/inetpub/wwwroot/esteban/dev/; rm -r -force *"
-                powershell "ls C:/inetpub/wwwroot/esteban/dev/"
-                powershell "cd C:/inetpub/wwwroot/esteban/dev/; ls"
-                powershell "ls"
-                powershell "npm --version; ng --version"
+            
+            steps {
+                script {
+                    powershell "echo 'Deleting folders & Checking [npm,ng] version...'"
+                    if (env.BRANCH_NAME == 'dev') {
+                        powershell "echo 'Deleteting files for ${BRANCH_NAME}...'"
+                        powershell "ls C:/inetpub/wwwroot/esteban/dev/; cd C:/inetpub/wwwroot/esteban/dev/; rm -r -force *"
+                        powershell "ls C:/inetpub/wwwroot/esteban/dev/"
+                    } else if (env.BRANCH_NAME == 'prod'){
+                        powershell "echo 'Deleteting files for ${BRANCH_NAME}...'"
+                        powershell "ls C:/inetpub/wwwroot/esteban/prod/; cd C:/inetpub/wwwroot/esteban/prod/; rm -r -force *"
+                        powershell "ls C:/inetpub/wwwroot/esteban/prod/"
+                    }
+                    powershell "Checking version of angular and node..."
+                    powershell "npm --version; ng --version"
+                }            
+                
+                
+               
             }
         }
 
@@ -24,8 +35,8 @@ pipeline {
             when {branch pattern: "(dev|prod)", comparator: "REGEXP"}
             steps {
                 powershell "echo 'Installing npm dependencies...'"
-                powershell "ls"
                 powershell "npm install"
+                powershell "echo 'Running tests...'"
                 powershell "ng lint; ng test"
             }
         }
@@ -36,13 +47,10 @@ pipeline {
                 powershell "echo 'Building application...'"
                 powershell "ng build --prod"
                 powershell "ls"
-                
             }
         }
 
         stage('Deploy') {
-            // when {branch pattern: "(dev|prod)", comparator: "REGEXP"}
-
             steps {
                 script {
                     powershell "echo 'Deploying application...'"
