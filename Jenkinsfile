@@ -10,9 +10,9 @@ pipeline {
             steps {                
                 powershell "echo 'Deleting folders & Checking [npm,ng] version....'"
                 powershell "ls C:/inetpub/wwwroot/esteban/dev/"
-                powershell "cd C:/inetpub/wwwroot/esteban/dev/ & ls"
+                powershell "cd C:/inetpub/wwwroot/esteban/dev/ && ls"
                 powershell "ls"
-                powershell "npm --version & ng --version"
+                powershell "npm --version && ng --version"
             }
         }
 
@@ -22,7 +22,7 @@ pipeline {
                 powershell "echo 'Installing npm dependencies...'"
                 powershell "ls"
                 powershell "npm install"
-                powershell "ng lint & ng test"
+                powershell "ng lint && ng test"
             }
         }
 
