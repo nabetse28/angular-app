@@ -10,7 +10,7 @@ pipeline {
             steps {
                 // bat "rmdir C:/inetpub/wwwroot/esteban/dev/ /Q/S"
                 bat "echo C:/inetpub/wwwroot/esteban/dev/"
-                bat "cd C:/inetpub/wwwroot/esteban/dev/"
+                bat "cd C:/inetpub/wwwroot/esteban/dev/ & dir"
                 bat "dir"
                 // bat "dir C:/inetpub/wwwroot/esteban/dev/"
                 bat "npm --version & ng --version"
@@ -32,7 +32,7 @@ pipeline {
             steps {
                 bat "ng build --prod"
                 bat "dir"
-                bat "xcopy dist/ C:/inetpub/wwwroot/esteban/dev/ /E/H"
+                bat "xcopy dist C:/inetpub/wwwroot/esteban/dev\ /E/H"
                 bat "echo C:/inetpub/wwwroot/esteban/dev/"
             }
         }
