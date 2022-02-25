@@ -3,16 +3,18 @@ pipeline {
     agent {
         label 'windows-worker'
     }
+    environment {
+     BRANCH_NAME = "${GIT_BRANCH.split("/")[1]}"
+    }
     stages {
 
         stage('Check Version') {
-            when {
-                expression{
-                    branch == 'dev' || branch == 'prod'
-                }
-            }
+            
             steps {
-                bat "npm --version"
+                if(env.BRANCH_NAME == 'dev' || env.BRANCH_NAME == 'prod') {
+                    bat "npm --version"
+                }
+                
             }
         }
 
