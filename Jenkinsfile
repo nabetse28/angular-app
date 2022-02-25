@@ -22,13 +22,13 @@ pipeline {
 
         stage('Build') {
             steps {
-                bat "mvn test"
+                bat "echo'Build'"
             }
         }
 
         stage('Deploy') {
             steps {
-                bat "mvn test"
+                bat "echo 'Deploy"
             }
         }
 
