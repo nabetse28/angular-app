@@ -8,6 +8,7 @@ pipeline {
         stage('Delete Folders & Check Version') {
             when {branch pattern: "(dev|prod)", comparator: "REGEXP"}
             steps {
+                sh "ls"
                 // bat "rmdir C:/inetpub/wwwroot/esteban/dev/ /Q/S"
                 bat "echo C:/inetpub/wwwroot/esteban/dev/"
                 bat "cd C:/inetpub/wwwroot/esteban/dev/ & dir"
@@ -32,8 +33,8 @@ pipeline {
             steps {
                 bat "ng build --prod"
                 bat "dir"
-                bat "xcopy dist C:/inetpub/wwwroot/esteban/dev\ /E/H"
-                bat "echo C:/inetpub/wwwroot/esteban/dev/"
+                bat "xcopy dist C:/inetpub/wwwroot/esteban/dev/ /E/H"
+                bat "cd C:/inetpub/wwwroot/esteban/dev/ & dir"
             }
         }
 
