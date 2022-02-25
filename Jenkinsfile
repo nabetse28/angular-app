@@ -57,7 +57,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                when {branch pattern: "(dev|prod)", comparator: "REGEXP"}
+                when {branch pattern: "(dev|prod|PR-.*)", comparator: "REGEXP"}
                 script {
                     powershell "echo 'Deploying application...'"
                     if (env.BRANCH_NAME == 'dev') {
