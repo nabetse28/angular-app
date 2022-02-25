@@ -3,6 +3,9 @@ pipeline {
     agent {
         label 'windows-worker'
     }
+    environment {
+        BRANCH_NAME = "${GIT_BRANCH.split("/")[1]}"
+    }
     stages {
 
         stage('Delete Folders & Check Version') {
