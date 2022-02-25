@@ -11,11 +11,8 @@ pipeline {
         stage('Check Version') {
             
             steps {
-                scripts {
-                    if(env.BRANCH_NAME == 'dev' || env.BRANCH_NAME == 'prod') {
-                        bat "npm --version"
-                    }
-                }
+                bat "npm --version"
+                echo env.BRANCH_NAME
             }
         }
 
