@@ -10,7 +10,9 @@ pipeline {
             steps {
                 // bat "rmdir C:/inetpub/wwwroot/esteban/dev/ /Q/S"
                 bat "echo C:/inetpub/wwwroot/esteban/dev/"
-                bat "dir C:/inetpub/wwwroot/esteban/dev/"
+                bat "cd C:/inetpub/wwwroot/esteban/dev/"
+                bat "dir"
+                // bat "dir C:/inetpub/wwwroot/esteban/dev/"
                 bat "npm --version & ng --version"
             }
         }
