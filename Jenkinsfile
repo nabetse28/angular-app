@@ -12,7 +12,7 @@ pipeline {
             when {branch pattern: "(dev|prod)", comparator: "REGEXP"}
             steps {                
                 powershell "echo 'Deleting folders & Checking [npm,ng] version...'"
-                powershell "ls C:/inetpub/wwwroot/esteban/dev/; cd C:/inetpub/wwwroot/esteban/dev/; rm -rf *.*"
+                powershell "ls C:/inetpub/wwwroot/esteban/dev/; cd C:/inetpub/wwwroot/esteban/dev/; rm -r -force *"
                 powershell "ls C:/inetpub/wwwroot/esteban/dev/"
                 powershell "cd C:/inetpub/wwwroot/esteban/dev/; ls"
                 powershell "ls"
