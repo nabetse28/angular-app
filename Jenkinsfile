@@ -6,7 +6,7 @@ pipeline {
     stages {
 
         stage('Check Version') {
-            when {branch pattern: '(dev|prod)'}
+            when {branch pattern: "(dev|prod)", comparator: "REGEXP"}
             steps {
                 bat "npm --version"
             }
