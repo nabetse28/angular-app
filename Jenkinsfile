@@ -32,7 +32,7 @@ pipeline {
             steps {
                 bat "ng build --prod"
                 bat "dir"
-                bat "xcopy dist C:/inetpub/wwwroot/esteban/dev/ /E/H"
+                bat "xcopy dist/clase6 C:/inetpub/wwwroot/esteban/dev/"
                 bat "cd C:/inetpub/wwwroot/esteban/dev/ & dir"
             }
         }
