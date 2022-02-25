@@ -32,14 +32,14 @@ pipeline {
         }
 
         stage('Install Dependencies') {
-            when {branch pattern: "(dev|prod)", comparator: "REGEXP"}
+            when {branch pattern: "(dev|prod|PR-*)", comparator: "REGEXP"}
             steps {
                 powershell "echo 'Installing npm dependencies...'"
                 powershell "npm install"
             }
         }
         stage('Test') {
-            when {branch pattern: "(dev)", comparator: "REGEXP"}
+            when {branch pattern: "(dev|PR-*)", comparator: "REGEXP"}
             steps {
                 powershell "echo 'Running tests...'"
                 powershell "ng lint; ng test"
