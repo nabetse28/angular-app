@@ -22,7 +22,7 @@ pipeline {
                         powershell "ls C:/inetpub/wwwroot/esteban/prod/; cd C:/inetpub/wwwroot/esteban/prod/; rm -r -force *"
                         powershell "ls C:/inetpub/wwwroot/esteban/prod/"
                     }
-                    powershell "Checking version of angular and node..."
+                    powershell "echo 'Checking version of angular and node...'"
                     powershell "npm --version; ng --version"
                 }            
                 
