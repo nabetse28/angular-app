@@ -6,7 +6,7 @@ pipeline {
     stages {
 
         stage('Check Version') {
-            when {branch 'dev|prod'}
+            when {branch pattern: '(dev|prod)'}
             steps {
                 bat "npm --version"
             }
@@ -20,7 +20,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                bat "echo'Build'"
+                bat "echo 'Build'"
             }
         }
 
