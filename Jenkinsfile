@@ -12,9 +12,11 @@ pipeline {
             }
         }
 
-        stage('Test') {
+        stage('Install Dependencies') {
             steps {
-                bat "echo 'Test'"
+                bat "echo 'Installing npm dependencies...'"
+                bat "ls"
+                bat "npm install"
             }
         }
 
