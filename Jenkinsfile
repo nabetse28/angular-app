@@ -8,7 +8,7 @@ pipeline {
         stage('Delete Folders & Check Version') {
             when {branch pattern: "(dev|prod)", comparator: "REGEXP"}
             steps {                
-                powershell "Deleting folders & Checking [npm,ng] version...."
+                powershell "echo 'Deleting folders & Checking [npm,ng] version....'"
                 powershell "ls C:/inetpub/wwwroot/esteban/dev/"
                 powershell "cd C:/inetpub/wwwroot/esteban/dev/ & ls"
                 powershell "ls"
