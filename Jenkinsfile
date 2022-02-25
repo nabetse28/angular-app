@@ -12,8 +12,7 @@ pipeline {
             when {branch pattern: "(dev|prod)", comparator: "REGEXP"}
             steps {                
                 powershell "echo 'Deleting folders & Checking [npm,ng] version...'"
-                echo 'Name of Branch: ' + env.BRANCH_NAME
-                powershell "ls C:/inetpub/wwwroot/esteban/dev/; cd C:/inetpub/wwwroot/esteban/dev/; rm -r *.*"
+                powershell "ls C:/inetpub/wwwroot/esteban/dev/; cd C:/inetpub/wwwroot/esteban/dev/; rm -rf *.*"
                 powershell "ls C:/inetpub/wwwroot/esteban/dev/"
                 powershell "cd C:/inetpub/wwwroot/esteban/dev/; ls"
                 powershell "ls"
@@ -42,11 +41,21 @@ pipeline {
         }
 
         stage('Deploy') {
-            when {branch pattern: "(dev|prod)", comparator: "REGEXP"}
+            // when {branch pattern: "(dev|prod)", comparator: "REGEXP"}
+
             steps {
-                powershell "echo 'Deploying application...'"
-                powershell "cp -r ./dist/clase6/*.* C:/inetpub/wwwroot/esteban/dev/"
-                powershell "cd C:/inetpub/wwwroot/esteban/dev/; ls"
+                script {
+                    powershell "echo 'Deploying application...'"
+                    if (env.BRANCH_NAME == 'dev') {
+                        powershell "cp -r ./dist/clase6/*.* C:/inetpub/wwwroot/esteban/dev/"
+                        powershell "cd C:/inetpub/wwwroot/esteban/dev/; ls"
+                    } else if (env.BRANCH_NAME == 'prod'){
+                        powershell "cp -r ./dist/clase6/*.* C:/inetpub/wwwroot/esteban/prod/"
+                        powershell "cd C:/inetpub/wwwroot/esteban/prod/; ls"
+                    }
+                }
+                
+                
             }
         }
   }
