@@ -31,7 +31,7 @@ pipeline {
             steps {
                 powershell "ng build --prod"
                 powershell "ls"
-                powershell "cp -r ./dist/clase6/ C:/inetpub/wwwroot/esteban/dev/"
+                powershell "cp -r ./dist/clase6/*.* C:/inetpub/wwwroot/esteban/dev/"
                 powershell "cd C:/inetpub/wwwroot/esteban/dev/; ls"
             }
         }
