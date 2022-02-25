@@ -7,7 +7,9 @@ pipeline {
 
         stage('Check Version') {
             when {
-                branch 'dev' || 'prod'
+                expression{
+                    branch == 'dev' || branch == 'prod'
+                }
             }
             steps {
                 bat "npm --version"
